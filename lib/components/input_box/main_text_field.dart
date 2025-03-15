@@ -25,17 +25,19 @@ class _MainTextFieldState extends State<MainTextField> {
                 ? Colors.black
                 : Colors.white,
             style: TextStyle(
-                color: ThemeProvider.themeOf(context).id == "light_theme"
-                    ? Colors.black
-                    : Colors.white),
+              color: ThemeProvider.themeOf(context).id == "light_theme"
+                  ? Colors.black
+                  : Colors.white,
+            ),
             minLines: 1,
             maxLines: 5,
             decoration: InputDecoration(
               hintText: "ask about anything...",
               hintStyle: TextStyle(
-                  color: ThemeProvider.themeOf(context).id == "light_theme"
-                      ? Colors.black
-                      : Colors.grey[500]),
+                color: ThemeProvider.themeOf(context).id == "light_theme"
+                    ? Colors.black
+                    : Colors.grey[500],
+              ),
               border: InputBorder.none,
               filled: true,
               fillColor: ThemeProvider.themeOf(context).id == "light_theme"

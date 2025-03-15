@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -5,6 +7,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:nativechat/models/chat_session.dart';
 import 'package:intl/intl.dart';
 import 'package:nativechat/pages/settings_page.dart';
+import 'package:nativechat/utils/show_toast.dart';
 import 'package:theme_provider/theme_provider.dart';
 
 class ChatHistoryDrawer extends StatefulWidget {
@@ -176,6 +179,7 @@ class _ChatHistoryDrawerState extends State<ChatHistoryDrawer> {
                                     sessions,
                                     index,
                                   );
+                                  showToast(context, "Deleted Chat History");
                                 },
                                 icon: Icon(
                                   Ionicons.trash_outline,
@@ -199,7 +203,7 @@ class _ChatHistoryDrawerState extends State<ChatHistoryDrawer> {
           Padding(
             padding: const EdgeInsets.only(
               left: 5.0,
-              right: 15.0,
+              right: 5.0,
               bottom: 10.0,
             ),
             child: Row(
@@ -217,6 +221,7 @@ class _ChatHistoryDrawerState extends State<ChatHistoryDrawer> {
                     onPressed: () {
                       chatBox?.clear();
                       setState(() {});
+                      showToast(context, "Deleted All Chat History");
                     },
                   ),
                 ),

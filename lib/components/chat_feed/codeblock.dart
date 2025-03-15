@@ -1,6 +1,6 @@
 // Dart
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/a11y-dark.dart';
 import 'package:flutter_highlight/themes/atom-one-light.dart';
@@ -20,6 +20,8 @@ import 'package:flutter_highlight/themes/atom-one-dark.dart';
 import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:theme_provider/theme_provider.dart';
+
+import '../../utils/copy_to_clipboard.dart';
 
 class Codeblock extends StatefulWidget {
   const Codeblock({super.key, required this.code, required this.name});
@@ -64,8 +66,8 @@ class _CodeblockState extends State<Codeblock> {
     {'name': 'vs2015', 'theme': vs2015Theme},
   ];
 
-  void copyToClipboard() async {
-    await Clipboard.setData(ClipboardData(text: widget.code));
+  void copyMarkdown() async {
+    await copyToClipboard(widget.code);
     setState(() {
       _copied = true;
     });
@@ -73,6 +75,10 @@ class _CodeblockState extends State<Codeblock> {
     setState(() {
       _copied = false;
     });
+    CherryToast.success(
+      title: Text("Copied"),
+      autoDismiss: true,
+    );
   }
 
   // dynamic activeThemes;
@@ -168,7 +174,7 @@ class _CodeblockState extends State<Codeblock> {
                 ),
                 const SizedBox(width: 10),
                 GestureDetector(
-                  onTap: copyToClipboard,
+                  onTap: copyMarkdown,
                   child: Icon(
                     _copied ? Icons.done : Icons.content_paste,
                     size: 15,
